@@ -52,5 +52,9 @@ public class Product {
                 .build();
     }
 
+    public void updateStock(Integer quantity){
+        this.quantityAvailable = this.quantityAvailable - quantity;
+    }
+
 
 }

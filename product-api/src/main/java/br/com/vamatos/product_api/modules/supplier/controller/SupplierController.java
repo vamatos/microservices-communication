@@ -5,19 +5,17 @@ import br.com.vamatos.product_api.config.exception.SuccessResponse;
 import br.com.vamatos.product_api.modules.supplier.dto.SupplierRequest;
 import br.com.vamatos.product_api.modules.supplier.dto.SupplierResponse;
 import br.com.vamatos.product_api.modules.supplier.service.SupplierService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/supplier")
+@AllArgsConstructor
 public class SupplierController {
 
-
-    @Autowired
-    private SupplierService supplierService;
-
+    private final SupplierService supplierService;
 
     @PostMapping
     public SupplierResponse save(@RequestBody SupplierRequest supplierRequest) {

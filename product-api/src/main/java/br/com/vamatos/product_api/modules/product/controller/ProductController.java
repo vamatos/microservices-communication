@@ -2,9 +2,12 @@ package br.com.vamatos.product_api.modules.product.controller;
 
 
 import br.com.vamatos.product_api.config.exception.SuccessResponse;
+import br.com.vamatos.product_api.modules.product.dto.ProductCheckStockRequest;
 import br.com.vamatos.product_api.modules.product.dto.ProductRequest;
 import br.com.vamatos.product_api.modules.product.dto.ProductResponse;
+import br.com.vamatos.product_api.modules.product.dto.ProductSalesResponse;
 import br.com.vamatos.product_api.modules.product.service.ProductService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/product")
+@AllArgsConstructor
 public class ProductController {
 
-
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
     @PostMapping
     public ProductResponse save(@RequestBody ProductRequest productRequest) {
@@ -56,6 +58,16 @@ public class ProductController {
     @DeleteMapping("{id}")
     public SuccessResponse delete(@PathVariable Integer id) {
         return productService.delete(id);
+    }
+
+    @PostMapping("check-stock")
+    public SuccessResponse checkProductsStock(@RequestBody ProductCheckStockRequest request){
+        return productService.checkProductsStock(request);
+    }
+
+    @GetMapping("{id}/sales")
+    public ProductSalesResponse findProductSales(@PathVariable Integer id){
+        return productService.findProducsSales(id);
     }
 
 }
