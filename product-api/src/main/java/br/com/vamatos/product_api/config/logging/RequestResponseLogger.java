@@ -1,4 +1,4 @@
-package br.com.vamatos.product_api.config;
+package br.com.vamatos.product_api.config.logging;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package br.com.vamatos.product_api.config;
+package br.com.vamatos.product_api.config.logging;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,10 +21,14 @@ public class RequestLoggingFilter implements Filter {
         CachedBodyHttpServletRequest request = new CachedBodyHttpServletRequest(originalRequest);
 
         long start = System.currentTimeMillis();
-        String transactionId = Optional.ofNullable(request.getHeader("X-Transaction-Id"))
+        String transactionId = Optional.ofNullable(request.getHeader("x-transaction-id"))
+                .orElse(UUID.randomUUID().toString());
+
+        String serviceId = Optional.ofNullable(request.getHeader("x-service-id"))
                 .orElse(UUID.randomUUID().toString());
 
         request.setAttribute("transactionId", transactionId);
+        request.setAttribute("serviceId", serviceId);
 
         Map<String, Object> requestData = new HashMap<>();
         requestData.put("headers", Collections.list(request.getHeaderNames())
@@ -41,7 +45,7 @@ public class RequestLoggingFilter implements Filter {
                         "info",
                         "Request received",
                         transactionId,
-                        request.getRequestURI(),
+                        serviceId,
                         request.getRequestURI(),
                         request.getMethod(),
                         0,
@@ -66,7 +70,7 @@ public class RequestLoggingFilter implements Filter {
                             "info",
                             "Response sent",
                             transactionId,
-                            request.getRequestURI(),
+                            serviceId,
                             request.getRequestURI(),
                             request.getMethod(),
                             response.getStatus(),

@@ -13,5 +13,5 @@ import java.util.List;
 public class SalesProductsResponse {
 
 
-    private List<String> salesIds;
+    private List<String> salesId;
 }

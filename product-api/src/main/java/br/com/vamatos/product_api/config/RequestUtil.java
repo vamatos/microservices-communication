@@ -1,4 +1,4 @@
-package br.com.vamatos.product_api;
+package br.com.vamatos.product_api.config;
 import br.com.vamatos.product_api.config.exception.ValidationException;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

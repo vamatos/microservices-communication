@@ -1,4 +1,4 @@
-package br.com.vamatos.product_api.config;
+package br.com.vamatos.product_api.config.logging;
 
 import jakarta.servlet.ReadListener;
 import jakarta.servlet.ServletInputStream;

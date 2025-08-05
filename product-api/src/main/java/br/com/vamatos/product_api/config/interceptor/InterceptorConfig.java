@@ -1,6 +1,7 @@
 package br.com.vamatos.product_api.config.interceptor;
 
 import br.com.vamatos.product_api.modules.jwt.service.JwtService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -18,6 +19,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public AuthInterceptor authInterceptor(){
         return new AuthInterceptor(jwtService());
     }
+
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
